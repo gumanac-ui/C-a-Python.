@@ -1,0 +1,49 @@
+producto: str
+
+cantidad: int
+productosRegistrados: int = 0
+productosConDescuento: int = 0
+
+precio: float
+totalProducto: float
+descuento: float
+totalCompras: float = 0
+totalPagado: float = 0
+
+producto = input("Ingrese el nombre del producto (FIN para terminar): ")
+
+while producto != "FIN":
+
+    cantidad = int(input("Ingrese la cantidad: "))
+
+    precio = float(input("Ingrese el precio unitario: "))
+
+    productosRegistrados += 1
+
+    totalProducto = cantidad * precio
+    descuento = 0
+
+    if totalProducto >= 100000:
+        descuento = totalProducto * 0.10
+        productosConDescuento += 1
+    elif totalProducto >= 50000:
+        descuento = totalProducto * 0.05
+        productosConDescuento += 1
+
+    valorFinal: float = totalProducto - descuento
+
+    print(f"\nProducto: {producto}")
+    print(f"Valor original: ${totalProducto:g}")
+    print(f"Descuento: ${descuento:g}")
+    print(f"Valor a pagar: ${valorFinal:g}")
+
+    totalCompras += totalProducto
+    totalPagado += valorFinal
+
+    producto = input("\nIngrese el nombre del producto (FIN para terminar): ")
+
+print("\n--- RESUMEN DE LA COMPRA ---")
+print(f"Productos registrados: {productosRegistrados}")
+print(f"Productos con descuento: {productosConDescuento}")
+print(f"Valor original de las compras: ${totalCompras:g}")
+print(f"Valor final a pagar: ${totalPagado:g}")
